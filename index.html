@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine? 💕</title>
+    <style>
+        body {
+            font-family: 'Dancing Script', cursive;
+            background: linear-gradient(135deg, #ffb6c1, #ff69b4, #ffe4e1);
+            color: #d63384;
+            text-align: center;
+            padding: 5vw 5vw;
+            overflow: auto;
+            position: relative;
+            min-height: 100vh;
+        }
+        h1 {
+            font-size: clamp(2em, 8vw, 3em);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+            to { text-shadow: 2px 2px 8px rgba(255,105,180,0.8); }
+        }
+        .gif {
+            width: min(350px, 90vw);
+            height: auto;
+            margin: 20px auto;
+            display: block;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.5);
+            transition: all 0.5s ease;
+        }
+        .gif:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 0 30px rgba(255,105,180,0.8);
+            filter: brightness(1.2);
+        }
+        .fallback {
+            display: none;
+            font-size: clamp(1em, 4vw, 1.5em);
+            color: #ff69b4;
+            margin: 20px auto;
+            padding: 5vw;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            max-width: 90vw;
+        }
+        .buttons {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        button {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(1em, 4vw, 1.8em);
+            padding: 3vw 5vw;
+            border: 2px solid #fff;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            min-width: 120px;
+            min-height: 50px;
+        }
+        .yes-style {
+            background: linear-gradient(45deg, #ff69b4, #ffb6c1);
+            color: white;
+            animation: pulse 1.5s infinite;
+        }
+        .yes-style:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(255,105,180,0.5);
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .no-style {
+            background: linear-gradient(45deg, #f8d7da, #f5c6cb);
+            color: #721c24;
+            position: relative;
+        }
+        .no:hover {
+            animation: escape 0.6s ease-in-out;
+        }
+        @keyframes escape {
+            0% { transform: translateX(0) rotate(0deg); }
+            25% { transform: translateX(50px) rotate(10deg); }
+            50% { transform: translateY(30px) rotate(-10deg); }
+            75% { transform: translateX(-50px) rotate(10deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+        .music-controls {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .music-controls button {
+            font-size: clamp(0.9em, 3vw, 1.2em);
+            padding: 2vw 4vw;
+            background: linear-gradient(45deg, #ff69b4, #ffb6c1);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 40px;
+        }
+        .music-controls button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(255,105,180,0.5);
+        }
+        .music-error {
+            display: none;
+            font-size: 1em;
+            color: #ff4500;
+            margin-top: 10px;
+        }
+        .autoplay-note {
+            font-size: 0.9em;
+            color: #d63384;
+            margin-top: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 1vw;
+            border-radius: 20px;
+            max-width: 80vw;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quote {
+            font-size: clamp(1.1em, 4vw, 1.5em);
+            font-style: italic;
+            margin-top: 20px;
+            color: #ff1493;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 3vw;
+            border-radius: 20px;
+            max-width: 80vw;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .heart {
+            position: absolute;
+            font-size: clamp(1em, 3vw, 2em);
+            color: #ff69b4;
+            animation: floatHearts 6s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes floatHearts {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+        @media (prefers-reduced-motion: no-preference) {
+            body {
+                animation: bounce 4s ease-in-out infinite;
+            }
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        @media (max-width: 768px) {
+            .buttons { flex-direction: column; gap: 15px; }
+            .music-controls { flex-direction: column; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Will You Be My Forever Valentine? 💖</h1>
+    <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExazE1d2VmMXVtMzJnZWx3M3F2cnFlZGE2dmd0dGtrMm8wbmdmMzNhNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LpdkJiQ8JzZABIRNr5/giphy.gif" alt="Person Proposing with Flowers to Girl GIF" class="gif" onerror="this.style.display='none'; document.getElementById('fallback').style.display='block';">
+    <div id="fallback" class="fallback">
+        <p>Oh no! The romantic GIF couldn't load right now. But imagine a sweet proposal with beautiful flowers... just like our love! 💐❤️</p>
+    </div>
+    <div class="music-controls">
+        <button onclick="playMusic()">Play Romantic Music 🎶</button>
+        <button onclick="pauseMusic()">Pause Music ⏸️</button>
+        <input type="range" id="volume" min="0" max="1" step="0.1" value="0.5" onchange="setVolume()" style="width: 100px; margin-left: 10px;">
+    </div>
+    <div class="autoplay-note">
+        <p>🎶 Music should start automatically! If not, click "Play Romantic Music" above.</p>
+    </div>
+    <div id="music-error" class="music-error">
+        <p>Music couldn't load. Try refreshing or adding your own audio file!</p>
+    </div>
+    <div class="buttons">
+        <button id="button1" class="yes-style" onclick="handleClick(this)">Yes, My Love! 💕</button>
+        <button id="button2" class="no-style" onclick="handleClick(this)">No, Thanks</button>
+    </div>
+    <div class="quote">
+        <p>"Love is not about how many days, months, or years you have been together. Love is about how much you love each other every single day." – Unknown</p>
+    </div>
+    <audio id="romantic-music" loop autoplay preload="none">
+        <source src="https://www.bensound.com/bensound-music/bensound-adventure.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <script>
+        let yesButton = document.getElementById('button1');
+        let noButton = document.getElementById('button2');
+        const music = document.getElementById('romantic-music');
+        const musicError = document.getElementById('music-error');
+        
+        function handleClick(button) {
+            if (button.textContent.includes('Yes')) {
+                sayYes();
+            } else {
+                swapButtons();
+                createHeart();
+            }
+        }
+        
+        function swapButtons() {
+            const tempText = yesButton.textContent;
+            yesButton.textContent = noButton.textContent;
+            noButton.textContent = tempText;
+            yesButton.className = 'no-style';
+            noButton.className = 'yes-style';
+            const tempOrder = yesButton.style.order;
+            yesButton.style.order = noButton.style.order;
+            noButton.style.order = tempOrder;
+            [yesButton, noButton] = [noButton, yesButton];
+        }
+        
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 6000);
+        }
+        
+        function sayYes() {
+            window.location.href = 'congrats.html';
+        }
+        
+        function playMusic() {
+            music.play().catch(error => {
+                console.error('Audio play failed:', error);
+                musicError.style.display = 'block';
+            });
+        }
+        
+        function pauseMusic() {
+            music.pause();
+        }
+        
+        function setVolume() {
+            music.volume = document.getElementById('volume').value;
+        }
+        
+        setInterval(createHeart, 1000);
+    </script>
+</body>
+</html>
